@@ -27,7 +27,7 @@ To enable this middleware, add the following snippet to the `/etc/swift/proxy-se
 
 ```conf
 [filter:sysmeta-domain-override]
-use = egg:sapcc-swift-addons#middleware
+use = egg:sapcc-swift-addons#sysmeta_domain_override
 ```
 
 Then, in the same file, add `sysmeta-domain-override` to the application pipeline directly **after** the `keystoneauth` middleware, but also **after** the `gatekeeper` middleware.

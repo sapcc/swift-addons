@@ -32,7 +32,7 @@ class DomainOverrideMiddleware(object):
     def __call__(self, environ, start_response):
         # only reseller may invoke the override
         if environ.get('reseller_request', False):
-            req = Request(env)
+            req = Request(environ)
             if OVERRIDE_HEADER in req.headers:
                 req.headers[SYSMETA_HEADER] = req.headers[OVERRIDE_HEADER]
 
