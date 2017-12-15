@@ -19,7 +19,7 @@ SYSMETA_HEADER  = get_sys_meta_prefix('account') + 'project-domain-id'
 OVERRIDE_HEADER = 'x-account-project-domain-id-override'
 
 class DomainOverrideMiddleware(object):
-    def __init__(self, app):
+    def __init__(self, app, **kwargs):
         self.app = app
 
     @classmethod
