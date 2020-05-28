@@ -1,1 +1,2 @@
 swift>=2.5.0
+future
