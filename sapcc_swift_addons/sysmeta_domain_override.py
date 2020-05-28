@@ -12,6 +12,7 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
+from builtins import object
 from swift.common.request_helpers import get_sys_meta_prefix
 from swift.common.swob import Request
 
