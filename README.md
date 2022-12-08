@@ -6,7 +6,7 @@ This repo contains some addon middlewares that we use at SAP to support our work
 ## Installation
 
 ```
-pip install git+https://github.com/sapcc/swift-sysmeta-domain-override-middleware
+pip install git+https://github.com/sapcc/swift-addons.git
 ```
 
 Then follow the instructions for the specific middlewares as shown below.
