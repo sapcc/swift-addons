@@ -16,8 +16,9 @@ from builtins import object
 from swift.common.request_helpers import get_sys_meta_prefix
 from swift.common.swob import Request
 
-SYSMETA_HEADER  = get_sys_meta_prefix('account') + 'project-domain-id'
-OVERRIDE_HEADER = 'x-account-project-domain-id-override'
+SYSMETA_HEADER = get_sys_meta_prefix("account") + "project-domain-id"
+OVERRIDE_HEADER = "x-account-project-domain-id-override"
+
 
 class DomainOverrideMiddleware(object):
     def __init__(self, app, **kwargs):
@@ -32,7 +33,7 @@ class DomainOverrideMiddleware(object):
 
     def __call__(self, environ, start_response):
         # only reseller may invoke the override
-        if environ.get('reseller_request', False):
+        if environ.get("reseller_request", False):
             req = Request(environ)
             if OVERRIDE_HEADER in req.headers:
                 req.headers[SYSMETA_HEADER] = req.headers[OVERRIDE_HEADER]
