@@ -20,6 +20,10 @@ OVERRIDE_HEADER = "x-account-project-domain-id-override"
 
 
 class DomainOverrideMiddleware:
+    # TODO: check if still needed?
+    # In Pike, DomainOverrideMiddleware.__init__() gets an additional keyword argument:
+    #     __name__="sysmeta_domain_override"
+    # which we need to accept and, at least, ignore.
     def __init__(self, app, **kwargs):
         self.app = app
 
