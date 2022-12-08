@@ -12,7 +12,6 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-from builtins import object
 from swift.common.request_helpers import get_sys_meta_prefix
 from swift.common.swob import Request
 
@@ -20,7 +19,7 @@ SYSMETA_HEADER = get_sys_meta_prefix("account") + "project-domain-id"
 OVERRIDE_HEADER = "x-account-project-domain-id-override"
 
 
-class DomainOverrideMiddleware(object):
+class DomainOverrideMiddleware:
     def __init__(self, app, **kwargs):
         self.app = app
 

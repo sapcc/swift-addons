@@ -1,2 +1,1 @@
-swift>=2.5.0
-future
+swift>=2.29.0
