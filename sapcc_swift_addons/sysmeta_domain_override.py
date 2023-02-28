@@ -21,6 +21,14 @@ OVERRIDE_HEADER = "x-account-project-domain-id-override"
 
 
 class DomainOverrideMiddleware:
+    """
+    Middleware that allows you to override the 'X-Account-Sysmeta-Project-Domain-Id' for
+    an account by providing the 'X-Account-Project-Domain-Id-Override' header.
+
+    Example: we use this in Limes during account creation after project quota is set:
+    https://github.com/sapcc/limes/blob/48d140aa62e099bd68f8692a4d33a6d7ea5f0077/internal/plugins/swift.go#L196
+    """
+
     def __init__(self, app, conf, logger=None):
         self.app = app
         self.logger = logger or get_logger(conf, log_route="sysmeta_domain_override")
