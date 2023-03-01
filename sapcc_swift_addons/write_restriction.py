@@ -65,7 +65,7 @@ class WriteRestrictionMiddleware:
             # allowed_roles, to set/update the 'X-Container-Meta-Write-Restricted' header.
             # This is to prevent them from locking themselves out of their containers.
             if (get_user_meta_prefix("container") + "write-restricted") in req.headers:
-                msg = "User does not have the required role to modify the X-Container-Meta-Write-Restricted header."
+                msg = "User is not allowed to modify the write-restricted header."
                 return HTTPMethodNotAllowed(body=msg)(env, start_response)
 
             if self.write_restricted_container(req, account, container):
