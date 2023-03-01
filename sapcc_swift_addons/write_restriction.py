@@ -17,7 +17,7 @@ from swift.common.constraints import (
     check_container_format,
     valid_api_version,
 )
-from swift.common.request_helpers import check_path_header, get_meta_prefix
+from swift.common.request_helpers import check_path_header, get_user_meta_prefix
 from swift.common.swob import HTTPMethodNotAllowed, Request, wsgi_unquote
 from swift.common.utils import config_true_value, get_logger, list_from_csv
 from swift.proxy.controllers.base import get_info
@@ -64,7 +64,7 @@ class WriteRestrictionMiddleware:
             # We do not allow non-privileged users, i.e. users without any of the
             # allowed_roles, to set/update the 'X-Container-Meta-Write-Restricted' header.
             # This is to prevent them from locking themselves out of their containers.
-            if req.headers.get(get_meta_prefix("container") + "write-restricted"):
+            if (get_user_meta_prefix("container") + "write-restricted") in req.headers:
                 msg = "User does not have the required role to modify the X-Container-Meta-Write-Restricted header."
                 return HTTPMethodNotAllowed(body=msg)(env, start_response)
 
