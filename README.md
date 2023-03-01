@@ -42,18 +42,22 @@ pipeline = ... gatekeeper ... keystoneauth sysmeta-domain-override ...
 
 ### write-restriction
 
-This middleware allows you to restrict operations on a container, i.e. make the container
-read-only, by setting the `X-Container-Meta-Write-Restricted` metadata header on a
-container to `true`. Additionally, you can define the optional `allowed_roles` config
-option so that users that have one of these Keystone roles can bypass this restriction and
-still perform write operations.
+This middleware allows you to restrict write operations on a container, i.e. make the
+container read-only, by setting the `X-Container-Meta-Write-Restricted` metadata header on
+a container to `true`. Additionally, you **need** to specify which roles are allowed to
+perform write operations on the container by defining the `allowed_roles` option in the
+config file.
+
+Only users that have one of the _allowed roles_ can set/modify the write restriction
+metadata header. This is to prevent non-privileged users from locking themselves out their
+containers.
 
 To enable this middleware, add the following snippet to the `proxy-server.conf` file:
 
 ```conf
 [filter:write-restriction]
 use = egg:sapcc-swift-addons#write_restriction
-# allowed_roles takes a comma-separated list
+# allowed_roles takes a comma-separated list of roles.
 allowed_roles = objectstore_admin, reseller_admin, ....
 ```
 
