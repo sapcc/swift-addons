@@ -72,7 +72,7 @@ class WriteRestrictionMiddleware:
         Check whether a container is write restricted, i.e. the
         'X-Container-Meta-Write-Restricted' metadata header is set to 'true'.
         """
-        info = get_info(self.app, req.environ, account, container, swift_source="RO")
+        info = get_info(self.app, req.environ, account, container, swift_source="WR")
         write_restricted = info.get("meta", {}).get("write-restricted", "")
         return config_true_value(write_restricted)
 
