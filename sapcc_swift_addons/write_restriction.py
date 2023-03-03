@@ -69,7 +69,7 @@ class WriteRestrictionMiddleware:
                 return HTTPMethodNotAllowed(body=msg)(env, start_response)
 
             if self.write_restricted_container(req, account, container):
-                msg = "Writes are disabled for this container."
+                msg = "Writes are restricted for this container."
                 return HTTPMethodNotAllowed(body=msg)(env, start_response)
 
         return self.app(env, start_response)
